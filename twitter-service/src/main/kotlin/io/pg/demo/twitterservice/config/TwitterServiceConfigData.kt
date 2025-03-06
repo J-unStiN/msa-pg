@@ -9,4 +9,7 @@ import org.springframework.context.annotation.Configuration
 class TwitterServiceConfigData {
     lateinit var twitterKeywords: List<String>
     lateinit var welcomeMessage: String
+    lateinit var twitterV2BaseUrl: String
+    lateinit var twitterV2RulesBaseUrl: String
+    lateinit var twitterV2BearerToken : String
 }

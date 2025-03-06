@@ -6,12 +6,14 @@ import io.pg.demo.twitterservice.listener.TwitterKafkaStatusListener
 import io.pg.demo.twitterservice.runner.StreamRunner
 import jakarta.annotation.PreDestroy
 import org.slf4j.LoggerFactory
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Component
 import twitter4j.FilterQuery
 import twitter4j.TwitterStream
 import twitter4j.TwitterStreamFactory
 
 @Component
+@ConditionalOnProperty(name = arrayOf("twitter-service.enable-v2-tweets"), havingValue = "false")
 class TwitterKafkaStreamRunner(
     private val twitterServiceConfigData: TwitterServiceConfigData,
     private val twitterKafkaStatusListener: TwitterKafkaStatusListener
