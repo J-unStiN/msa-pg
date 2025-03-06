@@ -1,0 +1,8 @@
+twitter-service:
+  twitter-keywords:
+    - Java
+    - Spring
+    - Kotlin
+    - Kafka
+    - Elasticsearch
+  welcome-message: Welcome to Twitter Service
