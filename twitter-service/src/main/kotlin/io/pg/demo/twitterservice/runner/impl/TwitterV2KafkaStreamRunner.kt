@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component
 import java.io.IOException
 import java.net.URISyntaxException
 
-@Component
+//@Component
 //@ConditionalOnProperty(name = ["twitter-service.enable-v2-tweets"], havingValue = "true", matchIfMissing = true)
-@ConditionalOnExpression("\${twitter-service.enable-v2-tweets} && !\${twitter-service.enable-mock-tweets}")
+//@ConditionalOnExpression("\${twitter-service.enable-v2-tweets} && !\${twitter-service.enable-mock-tweets}")
 class TwitterV2KafkaStreamRunner(
     private val twitterServiceConfigData: TwitterServiceConfigData,
     private val twitterV2StreamHelper: TwitterV2StreamHelper

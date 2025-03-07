@@ -36,8 +36,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-@Component
-@ConditionalOnExpression("${twitter-service.enable-v2-tweets} && not ${twitter-service.enable-mock-tweets}")
+//@Component
+//@ConditionalOnExpression("${twitter-service.enable-v2-tweets} && not ${twitter-service.enable-mock-tweets}")
 public class TwitterV2StreamHelper {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterV2StreamHelper.class);
