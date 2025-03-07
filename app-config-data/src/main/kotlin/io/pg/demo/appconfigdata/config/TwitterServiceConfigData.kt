@@ -1,4 +1,4 @@
-package io.pg.demo.twitterservice.config
+package io.pg.demo.appconfigdata.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration

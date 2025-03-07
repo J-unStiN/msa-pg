@@ -1,6 +1,6 @@
 package io.pg.demo.twitterservice.runner.impl
 
-import io.pg.demo.twitterservice.config.TwitterServiceConfigData
+import io.pg.demo.appconfigdata.config.TwitterServiceConfigData
 import io.pg.demo.twitterservice.runner.StreamRunner
 import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression

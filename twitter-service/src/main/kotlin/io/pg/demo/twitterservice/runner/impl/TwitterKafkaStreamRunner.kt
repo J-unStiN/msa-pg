@@ -1,7 +1,7 @@
 package io.pg.demo.twitterservice.runner.impl
 
+import io.pg.demo.appconfigdata.config.TwitterServiceConfigData
 import io.pg.demo.twitterservice.TwitterServiceApplication
-import io.pg.demo.twitterservice.config.TwitterServiceConfigData
 import io.pg.demo.twitterservice.listener.TwitterKafkaStatusListener
 import io.pg.demo.twitterservice.runner.StreamRunner
 import jakarta.annotation.PreDestroy

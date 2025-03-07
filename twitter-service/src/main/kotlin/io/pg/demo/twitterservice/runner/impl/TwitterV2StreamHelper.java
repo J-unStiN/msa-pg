@@ -1,6 +1,6 @@
 package io.pg.demo.twitterservice.runner.impl;
 
-import io.pg.demo.twitterservice.config.TwitterServiceConfigData;
+import io.pg.demo.appconfigdata.config.TwitterServiceConfigData;
 import io.pg.demo.twitterservice.listener.TwitterKafkaStatusListener;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,8 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.stereotype.Component;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 import twitter4j.TwitterObjectFactory;
