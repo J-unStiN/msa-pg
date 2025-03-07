@@ -11,6 +11,7 @@ allprojects {
     version = "0.0.1-SNAPSHOT"
 
     repositories {
+        gradlePluginPortal()
         mavenCentral()
     }
 }
@@ -25,6 +26,8 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//        implementation("org.apache.avro:avro:1.10.0")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -46,6 +49,7 @@ subprojects {
             }
         }
     }
+
 
     tasks.withType<Test> {
         useJUnitPlatform()
