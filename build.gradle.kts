@@ -13,6 +13,10 @@ allprojects {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        maven {
+            name = "confluent"
+            url = uri("https://packages.confluent.io/maven/")
+        }
     }
 }
 
