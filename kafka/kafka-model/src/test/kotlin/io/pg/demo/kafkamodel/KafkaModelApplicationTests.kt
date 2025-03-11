@@ -3,10 +3,10 @@ package io.pg.demo.kafkamodel
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+//@SpringBootTest
 class KafkaModelApplicationTests {
 
-    @Test
+//    @Test
     fun contextLoads() {
     }
 

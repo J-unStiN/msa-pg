@@ -1,7 +1,7 @@
 package io.pg.demo.twitterservice
 
 
-import io.pg.demo.appconfigdata.config.TwitterServiceConfigData
+import io.pg.demo.twitterservice.init.StreamInitializer
 import io.pg.demo.twitterservice.runner.StreamRunner
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -12,19 +12,14 @@ import org.springframework.context.annotation.ComponentScan
 @SpringBootApplication
 @ComponentScan(basePackages = ["io.pg.demo"])
 class TwitterServiceApplication(
-    private val twitterServiceConfigData: TwitterServiceConfigData,
-    private val streamRunner: StreamRunner
+    private val streamRunner: StreamRunner,
+    private val streamInitializer: StreamInitializer
 ) : CommandLineRunner {
 
     private val LOG = LoggerFactory.getLogger(TwitterServiceApplication::class.java)
 
     override fun run(vararg args: String?) {
-
-        twitterServiceConfigData.twitterKeywords
-            .forEach { keyword ->
-                LOG.info("Twitter keyword: {}", keyword)
-            }
-        println("Hello, Twitter Service! ${twitterServiceConfigData.welcomeMessage}")
+        streamInitializer.init()
         streamRunner.start()
     }
 }

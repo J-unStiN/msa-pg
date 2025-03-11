@@ -3,6 +3,17 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.4.3" apply false
     id("io.spring.dependency-management") version "1.1.7"
+    id("com.github.davidmc24.gradle.plugin.avro-base") version "1.9.1"
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+//        if (requested.group == "com.github.davidmc24.gradle.plugin.avro-base") {
+        if (requested.group == "org.apache.avro") {
+            useVersion("1.11.4")
+            because("Avro 버전 충돌 해결")
+        }
+    }
 }
 
 
@@ -30,7 +41,8 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-//        implementation("org.apache.avro:avro:1.10.0")
+
+        implementation("org.apache.avro:avro:1.11.4") // 명시적 버전 지정
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
