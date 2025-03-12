@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 import kotlin.properties.Delegates
 
 @Configuration
-@ConfigurationProperties(prefix = "retry.config")
+@ConfigurationProperties(prefix = "retry-config")
 class RetryConfigData {
 
     var initialIntervalMs by Delegates.notNull<Long>()

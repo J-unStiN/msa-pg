@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 @Component
-class KafkaStreamInitializer(
+open class KafkaStreamInitializer(
     private val kafkaConfigData: KafkaConfigData,
     private val kafkaAdminClient: KafkaAdminClient
 ) : StreamInitializer {

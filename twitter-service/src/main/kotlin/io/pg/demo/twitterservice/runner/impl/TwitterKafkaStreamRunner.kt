@@ -13,7 +13,7 @@ import twitter4j.TwitterStream
 import twitter4j.TwitterStreamFactory
 
 @Component
-@ConditionalOnProperty(name = arrayOf("twitter-service.enable-mock-tweets"), havingValue = "false", matchIfMissing = true)
+@ConditionalOnProperty(name = ["twitter-service.enable-mock-tweets"], havingValue = "false", matchIfMissing = true)
 class TwitterKafkaStreamRunner(
     private val twitterServiceConfigData: TwitterServiceConfigData,
     private val twitterKafkaStatusListener: TwitterKafkaStatusListener

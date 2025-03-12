@@ -7,7 +7,6 @@ import org.apache.kafka.clients.admin.AdminClient
 import org.apache.kafka.clients.admin.CreateTopicsResult
 import org.apache.kafka.clients.admin.NewTopic
 import org.apache.kafka.clients.admin.TopicListing
-import org.apache.kafka.common.internals.Topic
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
@@ -19,21 +18,22 @@ import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
-class KafkaAdminClient(
+open class KafkaAdminClient(
     private val kafkaConfigData: KafkaConfigData,
     private val retryConfigData : RetryConfigData,
     private val adminClient: AdminClient,
-    private val retryTemplate: RetryTemplate,
-    private val webClient: WebClient
+    private val webClient: WebClient,
+    private val retryTemplate: RetryTemplate
 ) {
 
     companion object {
         private val LOG = LoggerFactory.getLogger(KafkaAdminClient::class.java)
     }
 
-    fun createTopics() {
+    open fun createTopics() {
         try {
             val createTopicsResult: CreateTopicsResult = retryTemplate.execute<CreateTopicsResult, Throwable>(this::doCreatedTopics)
+
         } catch (t: Throwable) {
             throw KafkaClientException("Reached max nuber of retry for creating kafka topic ! {$t}")
         }
@@ -41,7 +41,7 @@ class KafkaAdminClient(
         checkTopicsCreated()
     }
 
-    fun checkTopicsCreated() {
+    open fun checkTopicsCreated() {
         var topics : Collection<TopicListing> = getTopics()
         var retryCount : Int = 1;
         val maxRetry : Int = retryConfigData.maxAttempts
@@ -58,7 +58,7 @@ class KafkaAdminClient(
         }
     }
 
-    fun checkSchemaRegistry() {
+    open fun checkSchemaRegistry() {
         var retryCount : Int = 1
         var maxRetry : Int = retryConfigData.maxAttempts
         var multiplier : Int = retryConfigData.multiplier.toInt()
@@ -70,7 +70,7 @@ class KafkaAdminClient(
         }
     }
 
-    private fun getSchemaRegistryStatus() : HttpStatusCode? {
+    open fun getSchemaRegistryStatus() : HttpStatusCode? {
         try {
             return webClient
                 .method(HttpMethod.GET)
@@ -83,7 +83,7 @@ class KafkaAdminClient(
         }
     }
 
-    private fun sleep(sleepTimeMs: Long) {
+    open fun sleep(sleepTimeMs: Long) {
         try {
             Thread.sleep(sleepTimeMs)
         } catch (t: InterruptedException) {
@@ -91,20 +91,20 @@ class KafkaAdminClient(
         }
     }
 
-    private fun checkMaxRetry(retry: Int, maxRetry: Int) {
+    open fun checkMaxRetry(retry: Int, maxRetry: Int) {
         if (retry > maxRetry) {
             throw KafkaClientException("Reached max number of retry for creating kafka topic !")
         }
     }
 
-    private fun isTopicCreated(topics: Collection<TopicListing>, topicName: String) : Boolean {
+    open fun isTopicCreated(topics: Collection<TopicListing>, topicName: String) : Boolean {
         if (topics.isEmpty()) {
             return false
         }
         return topics.any{ it.name().equals(topicName) }
     }
 
-    private fun doCreatedTopics(retryContext: RetryContext) : CreateTopicsResult {
+    open fun doCreatedTopics(retryContext: RetryContext) : CreateTopicsResult {
         val topicNames : List<String> = kafkaConfigData.topicNamesToCreate
         LOG.info("Creating topic names: ${topicNames.size}, attempt ${retryContext.retryCount}")
         val kafkaTopics : List<NewTopic> = topicNames.map { it ->
@@ -114,7 +114,7 @@ class KafkaAdminClient(
         return adminClient.createTopics(kafkaTopics)
     }
 
-    private fun getTopics() : Collection<TopicListing> {
+    open fun getTopics() : Collection<TopicListing> {
         val topics : Collection<TopicListing>
 
         try {
@@ -125,7 +125,7 @@ class KafkaAdminClient(
         return topics
     }
 
-    private fun doGetTopics(retryContext: RetryContext) : Collection<TopicListing> {
+    open fun doGetTopics(retryContext: RetryContext) : Collection<TopicListing> {
         LOG.info("Reading kafka topic ${kafkaConfigData.topicNamesToCreate.toTypedArray()}, attempt ${retryContext.retryCount}")
         val topics : Collection<TopicListing> = adminClient.listTopics().listings().get()
 

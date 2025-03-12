@@ -4,6 +4,8 @@ plugins {
 
 dependencies {
     implementation(project(":app-config-data"))
+    implementation(project(":common-config"))
+
 
     implementation("org.springframework.kafka:spring-kafka")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
