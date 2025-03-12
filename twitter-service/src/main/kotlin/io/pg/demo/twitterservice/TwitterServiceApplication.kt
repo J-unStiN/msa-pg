@@ -16,7 +16,10 @@ class TwitterServiceApplication(
     private val streamInitializer: StreamInitializer
 ) : CommandLineRunner {
 
-    private val LOG = LoggerFactory.getLogger(TwitterServiceApplication::class.java)
+    companion object {
+        private val LOG = LoggerFactory.getLogger(TwitterServiceApplication::class.java)
+    }
+
 
     override fun run(vararg args: String?) {
         streamInitializer.init()
