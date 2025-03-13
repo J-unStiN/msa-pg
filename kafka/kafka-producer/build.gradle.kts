@@ -17,3 +17,11 @@ dependencies {
 //    implementation("io.confluent:kafka-avro-serializer:5.5.1")
 }
 
+
+tasks.bootJar {
+    enabled = false
+}
+
+tasks.jar {
+    enabled = true
+}

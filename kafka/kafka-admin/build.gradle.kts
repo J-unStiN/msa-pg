@@ -12,3 +12,11 @@ dependencies {
 //    testImplementation("io.projectreactor:reactor-test")
 //    testImplementation("org.springframework.kafka:spring-kafka-test")
 }
+
+tasks.bootJar {
+    enabled = false
+}
+
+tasks.jar {
+    enabled = true
+}
