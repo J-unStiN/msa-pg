@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Congouration>
+    <property name="DEV_HOME" value="./twitter-service/logs"/>
+    <property name="APP_NAME" value="twitter-service"/>
+
+    <include resource="logback-common.xml"/>
+</Congouration>
